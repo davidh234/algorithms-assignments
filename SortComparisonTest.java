@@ -36,6 +36,18 @@ public class SortComparisonTest
     // TODO: add more tests here. Each line of code and ech decision in Collinear.java should
     // be executed at least once from at least one test.
     
+    @Test
+    public void testInsertionSort() {
+    	double[] test = {15, 4, 3, 7, 8, 6, 5, 11, 1, 2, 8};
+    	
+    	SortComparison s = new SortComparison();
+    	
+    	printArrayValues(test);
+
+    	test = s.insertionSort(test);
+    	printArrayValues(test);   	
+    }
+    
     
     @Test
     public void testSelectionSort() {
@@ -43,10 +55,10 @@ public class SortComparisonTest
     	
     	SortComparison s = new SortComparison();
     	
-    	printArrayValues(test);
+    	//printArrayValues(test);
 
     	test = s.selectionSort(test);
-    	printArrayValues(test);
+    	//printArrayValues(test);
     	
     }
     

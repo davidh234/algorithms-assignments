@@ -17,9 +17,18 @@
      * @return array sorted in ascending order.
      *
      */
-    static double [] insertionSort (double a[]){
-
-        //todo: implement the sort
+    static double [] insertionSort (double a[]){	
+    	for(int i =1; i < a.length; i++) {
+    		double next = a[i];
+    		int k = i-1;
+    		while(k >= 0 && next < a[k]){
+    			double temp = a[k];
+    			a[k] = next;
+    			a[k+1] = temp;
+    			k--;
+    		}
+    	}
+    	return a;
     }//end insertionsort
 
     /**
