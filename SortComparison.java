@@ -91,10 +91,10 @@
     				smallestPos = k;
     			}	
     		}
-			double temp = a[i];
-			a[i] = min;
-			a[smallestPos] = temp;
-			min = Double.MAX_VALUE;
+		double temp = a[i];
+		a[i] = min;
+		a[smallestPos] = temp;
+		min = Double.MAX_VALUE;
     	}
     	return a;
     }
