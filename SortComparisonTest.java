@@ -1,4 +1,6 @@
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+
+import java.util.Arrays;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,31 +38,93 @@ public class SortComparisonTest
     // TODO: add more tests here. Each line of code and ech decision in Collinear.java should
     // be executed at least once from at least one test.
     
+    // ----------------------------------------------------------
+    /**
+     * 
+     */
+    
+    @Test
+    public void testQuickSort() {
+    	double[] test = {15, 4, 3, 7, 8, 6, 5, 11, 1, 2, 8};
+    	double[] control = {15, 4, 3, 7, 8, 6, 5, 11, 1, 2, 8};
+
+    }
+    
+    
+    // ----------------------------------------------------------
+    /**
+     * 
+     */
+    
+    @Test
+    public void testMergeSortRecursive() {
+    	double[] test = {15, 4, 3, 7, 8, 6, 5, 11, 1, 2, 8};
+    	double[] control = {15, 4, 3, 7, 8, 6, 5, 11, 1, 2, 8};
+    	
+    	SortComparison a = new SortComparison();
+    	
+    	a.mergeSortRecursive(test);
+    	Arrays.sort(control);
+    	
+    	assertArrayEquals(control, test, 0);
+    }
+    
+    // ----------------------------------------------------------
+    /**
+     * 
+     */
+    
+    @Test
+    public void testMergeSortIterative() {
+    	double[] test = {15, 4, 3, 7, 8, 6, 5, 11, 1, 2, 8};
+    	double[] control = {15, 4, 3, 7, 8, 6, 5, 11, 1, 2, 8};
+    	
+    	SortComparison s = new SortComparison();
+
+    	test = s.mergeSortIterative(test);  
+    	Arrays.sort(control);
+    	
+    	assertArrayEquals(control, test, 0);
+    }
+    
+    
+    // ----------------------------------------------------------
+    /**
+     * Check that the insertion sort method is valid
+     */
+    
     @Test
     public void testInsertionSort() {
     	double[] test = {15, 4, 3, 7, 8, 6, 5, 11, 1, 2, 8};
+    	double[] control = {15, 4, 3, 7, 8, 6, 5, 11, 1, 2, 8};
     	
     	SortComparison s = new SortComparison();
-    	
-    	printArrayValues(test);
 
-    	test = s.insertionSort(test);
-    	printArrayValues(test);   	
+    	test = s.insertionSort(test);  
+    	Arrays.sort(control);
+    	
+    	assertArrayEquals(control, test, 0);
     }
     
+    // ----------------------------------------------------------
+    /**
+     * Check that the selection sort method is valid
+     */
     
     @Test
     public void testSelectionSort() {
     	double[] test = {15, 4, 3, 7, 8, 6, 5, 11, 1, 2, 8};
+    	double[] control = {15, 4, 3, 7, 8, 6, 5, 11, 1, 2, 8};
     	
     	SortComparison s = new SortComparison();
     	
-    	//printArrayValues(test);
-
     	test = s.selectionSort(test);
-    	//printArrayValues(test);
+    	Arrays.sort(control);
     	
+    	assertArrayEquals(control, test, 0);
+
     }
+
     
     public void printArrayValues(double[] a) {
     	for(int i =0; i < a.length-1; i++) {

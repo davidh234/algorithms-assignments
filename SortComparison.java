@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 // -------------------------------------------------------------------------
 
 /**
@@ -60,9 +62,14 @@
      */
 
     static double[] mergeSortIterative (double a[]) {
-
-		 //todo: implement the sort
-	
+    	int N = a.length;
+    	double[] aux = new double[N];
+    	for(int sz = 1; sz < N; sz = sz+sz) {
+    		for(int lo = 0; lo < N-sz; lo += sz+sz){
+    			merge(a,aux,lo,lo+sz-1, Math.min(lo+sz+sz-1, N-1));
+    		}
+    	}
+    	return a;
     }//end mergesortIterative
     
     
@@ -75,12 +82,35 @@
      * @return after the method returns, the array must be in ascending sorted order.
      */
     static double[] mergeSortRecursive (double a[]) {
-    	
-
-    	//todo: implement the sort
+    	double aux[] = new double[a.length];
+    	mergeSortRecursive(a, aux, 0, a.length-1);
+    	return a;
 	
    }//end mergeSortRecursive
+    
+    private static void mergeSortRecursive (double [] a, double [] aux, int lo, int hi){
+    	if(hi <= lo) {
+    		return;
+    	}
+    	int mid = lo + (hi-lo) / 2;
+    	mergeSortRecursive(a, aux, lo, mid);
+    	mergeSortRecursive(a, aux, mid+1, hi);
+    	merge(a, aux, lo, mid, hi);
     	
+    }
+    
+    private static void merge (double[] a, double[] aux, int lo, int mid, int hi){
+    	int i = lo; int j = mid+1;
+    	for(int k = lo; k <= hi; k++) {
+    		aux[k] = a[k];
+    	}
+    	for(int k =lo; k <= hi;k++){
+    		if(i > mid)					a[k] = aux[j++];
+    		else if(j > hi) 			a[k] = aux[i++];
+    		else if (aux[j] < aux[i])	a[k] = aux[j++];
+    		else						a[k] = aux[i++];
+    	}
+    }	
     
     /**
      * Sorts an array of doubles using Selection Sort.
@@ -100,10 +130,10 @@
     				smallestPos = k;
     			}	
     		}
-		double temp = a[i];
-		a[i] = min;
-		a[smallestPos] = temp;
-		min = Double.MAX_VALUE;
+			double temp = a[i];
+			a[i] = min;
+			a[smallestPos] = temp;
+			min = Double.MAX_VALUE;
     	}
     	return a;
     }
