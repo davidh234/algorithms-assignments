@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 
 // -------------------------------------------------------------------------
 
@@ -41,10 +42,69 @@ import java.util.Arrays;
      *
      */
     static double [] quickSort (double a[]){
-	
-		 //todo: implement the sort
-
+    	a = shuffle(a);
+    	a = quickSortRecursive(a, 0, a.length -1);
+    	return a;
     }//end quicksort
+    
+    
+    private static double[] quickSortRecursive(double a[], int lo, int hi) {
+    	if(hi <= lo) return a;
+    	
+    	int k = partition(a,lo,hi);
+    	quickSortRecursive(a, lo, k-1);
+    	quickSortRecursive(a, k+1, hi);
+    	return a;
+    }
+    
+    private static int partition(double a[], int lo, int hi) {
+    	int i = lo, j = hi+1;
+    	double tmp = a[lo];
+    	
+    	while (true) {
+    		while(a[++i] < tmp) {
+    			if (i == hi) {
+    				break;
+    			}
+    		}
+    		while(tmp < a[--j]) {
+    			if(j == lo) {
+    				break;
+    			}
+    		}
+    		if(i >= j) {
+    			break;
+    		}
+    		swap(a, i, j);
+    	}
+    	swap(a, lo, j);
+    	return j;
+    }
+    
+    //swaps the element at position 'x' with element in position 'y' from the array 'a'
+    private static void swap(double[] a, int x, int y) {
+    	double tmp = a[x];
+    	a[x] = a[y];
+    	a[y] = tmp;
+    }
+    
+    //implementation of the Fisher–Yates shuffle algorithm for quicksort
+    //asymptotic complexity: O(N)
+    public static double[] shuffle(double a[]) {
+    	Random r = new Random();
+    	int hi = a.length-1;
+    	int count =0;
+    	
+    	for(int i = a.length-1; i >= 0; i--) {
+    		int result = r.nextInt(hi);
+    		double tmp = a[i];
+    		a[i] = a[result];
+    		a[result] = tmp;
+    		hi = (a.length-1) - count;
+    		count++;
+    	}
+    	return a;
+    }
 
     /**
      * Sorts an array of doubles using Merge Sort.

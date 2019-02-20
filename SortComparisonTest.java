@@ -45,8 +45,15 @@ public class SortComparisonTest
     
     @Test
     public void testQuickSort() {
-    	double[] test = {15, 4, 3, 7, 8, 6, 5, 11, 1, 2, 8};
-    	double[] control = {15, 4, 3, 7, 8, 6, 5, 11, 1, 2, 8};
+    	double[] test = {1005, 11.5, 13, 6, 2, 29, 4, 44, 444, 102, 33, 106.5, 98.46};
+    	double[] control = {1005, 11.5, 13, 6, 2, 29, 4, 44, 444, 102, 33, 106.5, 98.46};
+    	
+    	SortComparison a = new SortComparison();
+    	
+    	a.quickSort(test);
+    	Arrays.sort(control);
+    	
+    	assertArrayEquals(control, test, 0);
 
     }
     
@@ -124,7 +131,18 @@ public class SortComparisonTest
     	assertArrayEquals(control, test, 0);
 
     }
+    
+    @Test
+    public void testShuffle() {
+    	double[] test = {15, 4, 3, 7, 8, 6, 5, 11, 1, 2, 8};
+    	
+    	SortComparison s = new SortComparison();
+    	
+    	test = s.shuffle(test);
+    	
+    	printArrayValues(test);
 
+    }
     
     public void printArrayValues(double[] a) {
     	for(int i =0; i < a.length-1; i++) {
