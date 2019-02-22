@@ -7,7 +7,7 @@ import java.util.Random;
  *  This class contains static methods that implementing sorting of an array of numbers
  *  using different sort algorithms.
  *
- *  @author
+ *  @author David Hooban
  *  @version HT 2019
  */
 
