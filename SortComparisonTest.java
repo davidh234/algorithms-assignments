@@ -25,64 +25,67 @@ import org.junit.runners.JUnit4;
  * 
  * Values recorded in nano-seconds then converted to milliseconds to get more accurate values
  * 
- * 	File type			|  Insertion |	Quick  |  Merge Recursive	|	Merge Iterative	 |   Selection
+ * 	File type           |  Insertion |	Quick  |  Merge Recursive   |  Merge Iterative   |  Selection
  * ------------------------------------------------------------------------------------------------------
- * 10 Random			|  0.00164	 | 0.014058|    0.004376	 	|     0.035145		 | 0.016273
+ * 10 Random            |  0.00164   | 0.014058|    0.004376        |     0.035145       | 0.016273
  * ------------------------------------------------------------------------------------------------------
- * 100 Random			|  0.119521	 | 0.099008|    0.073436		|     0.013812		 | 0.081093
+ * 100 Random           |  0.119521  | 0.099008|    0.073436        |     0.013812       | 0.081093
  * ------------------------------------------------------------------------------------------------------
- * 1000 Random			|  1.896341	 | 0.573538| 	0.087288		|	  0.145777		 | 2.037059
+ * 1000 Random          |  1.896341  | 0.573538|    0.087288        |     0.145777       | 2.037059
  * ------------------------------------------------------------------------------------------------------
- * 1000 few unique		|  1.942768	 | 0.144684|	0.072479		|	  0.11559		 | 0.306995
+ * 1000 few unique      |  1.942768  | 0.144684|    0.072479        |     0.11559        | 0.306995
  * ------------------------------------------------------------------------------------------------------
- * 1000 nearly ordered	|  0.010837	 | 0.119111|    0.055841		|	  0.081248		 | 0.275418
+ * 1000 nearly ordered  |  0.010837  | 0.119111|    0.055841        |     0.081248       | 0.275418
  * ------------------------------------------------------------------------------------------------------
- * 1000 reverse order	|  0.177418  | 0.266205|	0.057299		|	  0.071906		 | 0.367452
+ * 1000 reverse order   |  0.177418  | 0.266205|    0.057299        |     0.071906       | 0.367452
  * ------------------------------------------------------------------------------------------------------
- * 1000 sorted			|  0.002325  | 0.120341|	0.037606		|	  0.097367		 | 0.582769
+ * 1000 sorted          |  0.002325  | 0.120341|    0.037606        |     0.097367       | 0.582769
  * 
  * 
  * Questions:
- * 	a. Which of the sorting algorithms does the order of input have an impact on? Why?
- * 	Answer: Insertion sort is most impacted by the order of input. For example with the random 1000 numbers it took approx. 
- * 			1.9 milliseconds, and when the array was sorted, only took 0.002 milliseconds. The drastic difference is because
- * 			of how insertion sort works, where the most work done is inserting the next element into a sorted position. as this may
- *          require shifting all elements in the sorted array, this may be O(N) work, and for N elements, this gives us O(N^2) for
- *          standard insertion sort. But if the array is already sorted, then each element will be 'inserted' into its own position,
- *          and there will be no need to shift any elements, reducing the runtime to O(N), hence the major speed gain.
+ * A. Which of the sorting algorithms does the order of input have an impact on? Why?
  * 
- *	b. Which algorithm has the biggest difference between the best and worst performance, based
- *	   on the type of input, for the input of size 1000? Why?
- *  Answer: As outlined in answer A, insertion sort will have the biggest difference between worst and best performance as sorted
- *  		input gives us O(N) run-time, where as with random input we will have O(N^2) performance. By shuffling the input for
- *  		Quicksort we reduce the chance of the worst-case run time of O(N^2). This means insertion sort is the most affected 
- *  		by input type.
+ * 	Answer: Insertion sort is most impacted by the order of input. For example with the random 1000 numbers it took approx. 
+ * 1.9 milliseconds, and when the array was sorted, only took 0.002 milliseconds. The drastic difference is because
+ * of how insertion sort works, where the most work done is inserting the next element into a sorted position. as this may
+ * require shifting all elements in the sorted array, this may be O(N) work, and for N elements, this gives us O(N^2) for
+ * standard insertion sort. But if the array is already sorted, then each element will be 'inserted' into its own position,
+ * and there will be no need to shift any elements, reducing the runtime to O(N), hence the major speed gain.
+ * 
+ *B. Which algorithm has the biggest difference between the best and worst performance, based
+ *on the type of input, for the input of size 1000? Why?
+ *
+ *Answer: As outlined in answer A, insertion sort will have the biggest difference between worst and best performance as sorted
+ *input gives us O(N) run-time, where as with random input we will have O(N^2) performance. By shuffling the input for
+ *Quicksort we reduce the chance of the worst-case run time of O(N^2). This means insertion sort is the most affected 
+ *by input type.
  *	   
- *	c. Which algorithm has the best/worst scalability, i.e., the difference in performance time
- *	   based on the input size? Please consider only input files with random order for this answer.
- *	Answer: For my experiments, insertion sort has the worst scalability, as it had the biggest range between the smallest and 
- *			biggest input sizes. Recursive merge-sort had the best scalability, as it Had the smallest range in times between 
- *			the smallest and biggest input.
+ *C. Which algorithm has the best/worst scalability, i.e., the difference in performance time
+ *based on the input size? Please consider only input files with random order for this answer.
+ *
+ *Answer: For my experiments, insertion sort has the worst scalability, as it had the biggest range between the smallest and 
+ *biggest input sizes. Recursive merge-sort had the best scalability, as it Had the smallest range in times between 
+ *the smallest and biggest input.
  *	   
- *	d. Did you observe any difference between iterative and recursive implementations of merge
- *	   sort?
- *	Answer: To break down the different merge sort implementations, there is the dividing portion and the merging portion. Since
- *			Both implementations use the same 'merge' method there is no difference. The real difference is whether how we divide
- *			The input array. Recursion starts with the overall array and recursively splits the array into two, and then 'rebuilds'
- *			The array, in order, making use of the merge method. The iterative approach iterates over the array, starting at 
- *			two elements and taking larger portions (2^i items, where 1 <= i <= array.length) of the arrays and sorting them as it goes, 
-			such that larger sorted portions of the array are merging into each	other each iteration.
+ *D. Did you observe any difference between iterative and recursive implementations of merge sort?
+ *
+ *Answer: To break down the different merge sort implementations, there is the dividing portion and the merging portion. Since
+ *both implementations use the same 'merge' method there is no difference. The real difference is whether how we divide
+ *the input array. Recursion starts with the overall array and recursively splits the array into two, and then 'rebuilds'
+ *the array, in order, making use of the merge method. The iterative approach iterates over the array, starting at 
+ *two elements and taking larger portions (2^i items, where 1 <= i <= array.length) of the arrays and sorting them as it goes, 
+ *such that larger sorted portions of the array are merging into each	other each iteration.
  *			
  *	   
- *	e. Which algorithm is the fastest for each of the 7 input files? 
- *	Answer:
- *		10Random: 				Insertion Sort
- *		100Random: 				Merge sort Iterative
- *		1000Random: 			Merge sort recursive
- *		1000 few unique: 		Merge sort recursive
- *		1000 nearly ordered: 	Merge sort recursive
- *		1000 reverse order: 	Merge sort recursive
- *		1000 sorted: 			Insertion sort
+ *E. Which algorithm is the fastest for each of the 7 input files? 
+ *Answer:
+ *10Random:               Insertion Sort
+ *100Random:              Merge sort Iterative
+ *1000Random:             Merge sort recursive
+ *1000 few unique:        Merge sort recursive
+ *1000 nearly ordered:    Merge sort recursive
+ *1000 reverse order:     Merge sort recursive
+ *1000 sorted:            Insertion sort
  *
  */
 @RunWith(JUnit4.class)
