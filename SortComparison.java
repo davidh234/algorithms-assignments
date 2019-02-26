@@ -122,11 +122,10 @@ import java.util.Random;
      */
 
     static double[] mergeSortIterative (double a[]) {
-    	int N = a.length;
-    	double[] aux = new double[N];
-    	for(int sz = 1; sz < N; sz = sz+sz) {
-    		for(int lo = 0; lo < N-sz; lo += sz+sz){
-    			merge(a,aux,lo,lo+sz-1, Math.min(lo+sz+sz-1, N-1));
+    	double[] aux = new double[a.length];
+    	for(int itSize = 1; itSize < a.length; itSize = itSize+itSize) {
+    		for(int lo = 0; lo < a.length-itSize; lo += itSize+itSize){
+    			merge(a,aux,lo,lo+itSize-1, Math.min(lo+itSize+itSize-1, a.length-1));
     		}
     	}
     	return a;
@@ -202,8 +201,7 @@ import java.util.Random;
 
 
     public static void main(String[] args) {
-
-        //todo: do experiments as per assignment instructions
+        //experiments done from SortComparisonTest main
     }
 
  }//end class
