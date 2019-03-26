@@ -88,7 +88,7 @@ import java.util.Random;
     	a[y] = tmp;
     }
     
-    //implementation of the Fisher–Yates shuffle algorithm for quicksort
+    //implementation of the Fisherâ€“Yates shuffle algorithm for quicksort
     //asymptotic complexity: O(N)
     public static double[] shuffle(double a[]) {
     	Random r = new Random();
