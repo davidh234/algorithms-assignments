@@ -16,7 +16,8 @@ public class CompetitionTests {
     //TODO - more tests
     
     public static void main(String[] args) {
-    	CompetitionDijkstra cd = new CompetitionDijkstra("1000EWD.txt", 50,50,50); 	
+    	CompetitionDijkstra cd = new CompetitionDijkstra("TinyEWD.txt", 50,50,50); 	
+    	CompetitionFloydWarshall cF = new CompetitionFloydWarshall("TinyEWD.txt", 50,50,50); 	
     }
     
 }
